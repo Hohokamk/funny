@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="拖延事务所：为你的下一次拖延签发一张正式许可证。"
+    />
+    <meta name="theme-color" content="#f4f0e8" />
+    <title>拖延事务所 · 许可证生成器</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2323304f'/><path d='M18 18h28v6H18zm0 11h28v6H18zm0 11h18v6H18z' fill='%23ffcf4a'/></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="拖延事务所首页">
+        <span class="brand-mark" aria-hidden="true">拖</span>
+        <span>
+          <strong>拖延事务所</strong>
+          <small>PROCRASTINATION BUREAU</small>
+        </span>
+      </a>
+      <div class="header-meta">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>今日已批准 <strong id="approvedCount">17</strong> 次延期</span>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">官方认证 · 仅限今天使用</p>
+        <h1 id="page-title">把“再等会儿”<br />变成一份正式文件。</h1>
+        <p class="intro-copy">
+          输入你的待办事项，领取一张理由充分、措辞严谨、完全经不起推敲的拖延许可证。
+        </p>
+      </section>
+
+      <section class="workspace">
+        <form class="control-panel" id="permitForm">
+          <div class="panel-heading">
+            <span class="step-number">01</span>
+            <div>
+              <h2>填写申请</h2>
+              <p>所有信息仅保存在你的浏览器里。</p>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>申请人</span>
+            <input
+              id="applicant"
+              name="applicant"
+              type="text"
+              maxlength="12"
+              placeholder="比如：不想写周报的我"
+              autocomplete="off"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span>你想推迟什么？</span>
+            <input
+              id="task"
+              name="task"
+              type="text"
+              maxlength="24"
+              placeholder="比如：看完那篇收藏了半年的文章"
+              autocomplete="off"
+              required
+            />
+          </label>
+
+          <fieldset class="field-group">
+            <legend>准备拖到什么时候？</legend>
+            <div class="segmented" id="delayOptions">
+              <label>
+                <input type="radio" name="delay" value="喝完一杯水" />
+                <span>喝完一杯水</span>
+              </label>
+              <label>
+                <input type="radio" name="delay" value="明天一定" checked />
+                <span>明天一定</span>
+              </label>
+              <label>
+                <input type="radio" name="delay" value="下个季节" />
+                <span>下个季节</span>
+              </label>
+              <label>
+                <input type="radio" name="delay" value="宇宙热寂" />
+                <span>宇宙热寂</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="range-field">
+            <span>
+              <span>理由离谱程度</span>
+              <output id="reasonLevelLabel" for="reasonLevel">刚刚好</output>
+            </span>
+            <input
+              id="reasonLevel"
+              name="reasonLevel"
+              type="range"
+              min="1"
+              max="5"
+              value="3"
+            />
+            <span class="range-guide" aria-hidden="true">
+              <span>严谨</span>
+              <span>玄学</span>
+            </span>
+          </label>
+
+          <button class="primary-button" type="submit">
+            <span>签发许可证</span>
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p class="microcopy">提交即代表你认真地决定不认真。</p>
+        </form>
+
+        <div class="document-stage">
+          <div class="paper-shadow paper-shadow-one" aria-hidden="true"></div>
+          <div class="paper-shadow paper-shadow-two" aria-hidden="true"></div>
+
+          <article class="permit" id="permit" aria-live="polite">
+            <header class="permit-header">
+              <div class="seal-mini" aria-hidden="true">拖</div>
+              <div class="permit-heading">
+                <p>拖延事务所</p>
+                <span>PROCRASTINATION PERMIT</span>
+              </div>
+              <div class="permit-number">
+                <span>编号</span>
+                <strong id="permitNumber">NO. 000000</strong>
+              </div>
+            </header>
+
+            <div class="permit-title">
+              <p>兹批准</p>
+              <h2 id="permitApplicant">正在等你的名字</h2>
+              <p>合法暂时不处理</p>
+              <h3 id="permitTask">那件还没开始的事</h3>
+            </div>
+
+            <dl class="permit-details">
+              <div>
+                <dt>延期至</dt>
+                <dd id="permitDelay">明天一定</dd>
+              </div>
+              <div>
+                <dt>批准理由</dt>
+                <dd id="permitReason">系统正在寻找一个听起来很忙的借口。</dd>
+              </div>
+              <div>
+                <dt>附加条款</dt>
+                <dd id="permitClause">本许可证在你不看它的时候持续有效。</dd>
+              </div>
+            </dl>
+
+            <footer class="permit-footer">
+              <div>
+                <span>签发日期</span>
+                <strong id="permitDate">2026.09.16</strong>
+              </div>
+              <p>最终解释权归<br />未来的你所有</p>
+              <div class="signature">
+                <span>事务官签章</span>
+                <strong>先欠着</strong>
+              </div>
+            </footer>
+
+            <div class="rubber-stamp" id="rubberStamp" aria-hidden="true">
+              <span>已批准</span>
+              <small>不着急，但别太急</small>
+            </div>
+
+            <div class="permit-corner corner-one" aria-hidden="true">✦</div>
+            <div class="permit-corner corner-two" aria-hidden="true">✦</div>
+          </article>
+
+          <div class="document-actions">
+            <button class="secondary-button" id="regenerateButton" type="button">
+              换个理由
+            </button>
+            <button class="secondary-button stamp-button" id="stampButton" type="button">
+              <span>亲手盖章</span>
+              <span class="button-key">空格</span>
+            </button>
+            <button class="icon-button" id="copyButton" type="button" aria-label="复制许可证文字">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+              </svg>
+            </button>
+          </div>
+          <p class="stamp-prompt" id="stampPrompt">许可证尚未生效，请点击盖章。</p>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="拖延宣言">
+        <div class="ticker-track">
+          <span>现在不做，也是一种时间管理</span>
+          <span>急事缓办，缓事明天办</span>
+          <span>你的待办列表正在深呼吸</span>
+          <span>未来不是 deadline，是可能性</span>
+          <span>现在不做，也是一种时间管理</span>
+          <span>急事缓办，缓事明天办</span>
+          <span>你的待办列表正在深呼吸</span>
+          <span>未来不是 deadline，是可能性</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span class="toast-mark" aria-hidden="true">✓</span>
+      <span id="toastMessage">许可证已复制</span>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
